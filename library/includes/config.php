@@ -1,8 +1,8 @@
 <?php 
 // DB credentials.
 define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
+define('DB_USER','library_user');
+define('DB_PASS','library_pass_2026');
 define('DB_NAME','library');
 // Establish database connection.
 try

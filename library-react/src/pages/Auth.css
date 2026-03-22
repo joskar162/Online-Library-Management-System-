@@ -1,0 +1,96 @@
+.auth-page {
+  min-height: calc(100vh - 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 15px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-header h2 {
+  color: #1e3c72;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.auth-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #dee2e6;
+}
+
+.auth-footer p {
+  color: #666;
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: #1e3c72;
+  font-weight: 600;
+}
+
+.forgot-link {
+  text-align: right;
+  margin-top: 5px;
+}
+
+.forgot-link a {
+  color: #1e3c72;
+  font-size: 14px;
+}
+
+/* Verification Code */
+.verification-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.verification-group input {
+  width: 120px;
+}
+
+.verification-group .captcha {
+  height: 35px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Form Grid */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 576px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .auth-card {
+    padding: 20px;
+  }
+}
