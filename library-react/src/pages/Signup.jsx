@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { studentAPI } from '../services/api';
+import { studentAPI, validatePasswordStrength, PASSWORD_REQUIREMENTS } from '../services/api';
 import './Auth.css';
 
 const Signup = () => {
@@ -12,7 +12,18 @@ const Signup = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(null);
   const navigate = useNavigate();
+
+  // Check password strength on change
+  useEffect(() => {
+    if (password) {
+      const validation = validatePasswordStrength(password);
+      setPasswordStrength(validation);
+    } else {
+      setPasswordStrength(null);
+    }
+  }, [password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,17 +35,16 @@ const Signup = () => {
       return;
     }
 
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+    // Validate password strength
+    const validation = validatePasswordStrength(password);
+    if (!validation.isValid) {
+      setError(validation.errors.join('. '));
       return;
     }
 
     setLoading(true);
 
-    // Simple hash for demo (in production, use proper hashing)
-    const hashedPassword = password;
-
-    const result = await studentAPI.signup(fullName, mobile, email, hashedPassword);
+    const result = await studentAPI.signup(fullName, mobile, email, password);
     
     if (result.success) {
       setSuccess(`Registration successful! Your Student ID is: ${result.data.studentId}`);
@@ -108,6 +118,26 @@ const Signup = () => {
                 required
                 autoComplete="off"
               />
+              {passwordStrength && (
+                <div className="password-requirements">
+                  <small>Password must contain:</small>
+                  <ul>
+                    <li className={password.length >= PASSWORD_REQUIREMENTS.minLength ? 'valid' : ''}>
+                      At least {PASSWORD_REQUIREMENTS.minLength} characters
+                    </li>
+                    {PASSWORD_REQUIREMENTS.requireUppercase && (
+                      <li className={/[A-Z]/.test(password) ? 'valid' : ''}>
+                        At least one uppercase letter
+                      </li>
+                    )}
+                    {PASSWORD_REQUIREMENTS.requireNumber && (
+                      <li className={/\d/.test(password) ? 'valid' : ''}>
+                        At least one number
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
             </div>
             
             <div className="form-group">

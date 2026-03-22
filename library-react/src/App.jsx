@@ -13,6 +13,7 @@ import StudentDashboard from './pages/student/Dashboard';
 import StudentProfile from './pages/student/Profile';
 import StudentIssuedBooks from './pages/student/IssuedBooks';
 import StudentChangePassword from './pages/student/ChangePassword';
+import BookRequests from './pages/student/BookRequests';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/Dashboard';
@@ -23,6 +24,8 @@ import IssueBook from './pages/admin/IssueBook';
 import ManageIssuedBooks from './pages/admin/ManageIssuedBooks';
 import RegStudents from './pages/admin/RegStudents';
 import AdminChangePassword from './pages/admin/ChangePassword';
+import AdminProfile from './pages/admin/Profile';
+import Reports from './pages/admin/Reports';
 
 // Protected Route Component
 const ProtectedRoute = ({ children, userType }) => {
@@ -80,6 +83,11 @@ function App() {
                 <StudentChangePassword />
               </ProtectedRoute>
             } />
+            <Route path="/student/book-requests" element={
+              <ProtectedRoute userType="student">
+                <BookRequests />
+              </ProtectedRoute>
+            } />
 
             {/* Admin Protected Routes */}
             <Route path="/admin/dashboard" element={
@@ -120,6 +128,16 @@ function App() {
             <Route path="/admin/change-password" element={
               <ProtectedRoute userType="admin">
                 <AdminChangePassword />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/profile" element={
+              <ProtectedRoute userType="admin">
+                <AdminProfile />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin/reports" element={
+              <ProtectedRoute userType="admin">
+                <Reports />
               </ProtectedRoute>
             } />
 

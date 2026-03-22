@@ -53,19 +53,22 @@ const Layout = ({ children }) => {
               {userType === 'admin' ? (
                 <>
                   <Link to="/admin/dashboard">Dashboard</Link>
+                  <Link to="/admin/profile">My Profile</Link>
                   <Link to="/admin/manage-books">Manage Books</Link>
                   <Link to="/admin/manage-authors">Manage Authors</Link>
                   <Link to="/admin/manage-categories">Manage Categories</Link>
                   <Link to="/admin/issue-book">Issue Book</Link>
                   <Link to="/admin/manage-issued-books">Manage Issued Books</Link>
                   <Link to="/admin/reg-students">Registered Students</Link>
+                  <Link to="/admin/reports">Reports</Link>
                   <Link to="/admin/change-password">Change Password</Link>
                 </>
               ) : (
                 <>
                   <Link to="/student/dashboard">Dashboard</Link>
                   <Link to="/student/my-profile">My Profile</Link>
-                  <Link to="/student/issued-books">Issued Books</Link>
+                  <Link to="/student/issued-books">My Books</Link>
+                  <Link to="/student/book-requests">Book Requests</Link>
                   <Link to="/student/change-password">Change Password</Link>
                 </>
               )}
