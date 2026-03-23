@@ -62,6 +62,7 @@ const Layout = ({ children }) => {
                   <Link to="/admin/reg-students">Registered Students</Link>
                   <Link to="/admin/reports">Reports</Link>
                   <Link to="/admin/change-password">Change Password</Link>
+                  <Link to="/two-factor-setup">2FA Security</Link>
                 </>
               ) : (
                 <>
@@ -70,6 +71,7 @@ const Layout = ({ children }) => {
                   <Link to="/student/issued-books">My Books</Link>
                   <Link to="/student/book-requests">Book Requests</Link>
                   <Link to="/student/change-password">Change Password</Link>
+                  <Link to="/two-factor-setup">2FA Security</Link>
                 </>
               )}
             </nav>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { twoFactorAPI } from '../services/twoFactorApi';
 import './Auth.css';
 
 const AdminLogin = () => {
@@ -19,7 +20,18 @@ const AdminLogin = () => {
     const result = await login(username, password, 'admin');
     
     if (result.success) {
-      navigate('/admin/dashboard');
+      // Check if 2FA is enabled
+      const twoFactorResult = await twoFactorAPI.getSettings('admin');
+      
+      if (twoFactorResult.success && twoFactorResult.data.isConfigured) {
+        // 2FA is enabled, redirect to verification page
+        navigate('/two-factor-verify', {
+          state: { userId: 'admin', userType: 'admin' }
+        });
+      } else {
+        // No 2FA, go to dashboard
+        navigate('/admin/dashboard');
+      }
     } else {
       setError(result.message);
     }

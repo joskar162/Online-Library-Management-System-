@@ -7,6 +7,8 @@ import StudentLogin from './pages/StudentLogin';
 import AdminLogin from './pages/AdminLogin';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
+import TwoFactorSetup from './pages/TwoFactorSetup';
+import TwoFactorVerify from './pages/TwoFactorVerify';
 
 // Student Pages
 import StudentDashboard from './pages/student/Dashboard';
@@ -61,6 +63,10 @@ function App() {
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            
+            {/* 2FA Routes */}
+            <Route path="/two-factor-setup" element={<TwoFactorSetup />} />
+            <Route path="/two-factor-verify" element={<TwoFactorVerify />} />
 
             {/* Student Protected Routes */}
             <Route path="/student/dashboard" element={
